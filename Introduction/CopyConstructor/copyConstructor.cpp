@@ -45,6 +45,9 @@ public:
 
 int main()
 {
+    /* so here we create student, by passing arguments to 
+    constructor, but before constructor will do things, compiler
+    will set up base classes by calling their's default constructors */
     Student st1(25, "Dmitriy");
     Student st2(18, "Anton");
     Student st3(19, "Sasha");
