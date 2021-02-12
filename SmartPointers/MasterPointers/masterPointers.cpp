@@ -19,17 +19,54 @@ public:
 
 
 
+
 template <class T>
 class MP
 {
 public:
-    MP() : t(new T) { printf("MP constr\n"); }
-    ~MP() { printf("MP destr\n"); delete t; }
-    T* operator->() { return t; }
+    MP();  //creates object
+    MP(const MP<T>&); // copies object
+    ~MP();  // deletes object
+
+    MP<T>& operator=(const MP<T>&);
+    T* operator->() const;
 
 private:
     T* t;
 };
+
+template <class T>
+MP<T>::MP() : t(new T)
+{}
+
+template <class T>
+MP<T>::MP(const MP<T>& mp) : t(new Type(*(mp.t)))
+{}
+
+template <class T>
+MP<T>::~MP()
+{
+    delete t;
+}
+
+template <class T>
+MP<T>& MP<T>::operator=(const MP<T>& mp)
+{
+    if (this != &mp)
+    {
+        delete t;
+        t = new T(*(mp.t));
+    }
+    return *this;
+}
+
+template <class T>
+T* MP<T>::operator->() const
+{
+    return t;
+}
+
+
 
 
 
@@ -40,11 +77,5 @@ int main()
     mp1->Print();
 
     
-
-
-
-
-    
-
     return 1;
 }
