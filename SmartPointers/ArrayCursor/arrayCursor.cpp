@@ -12,7 +12,7 @@ struct Index
 };
 
 class Foo
-{
+{   
 private:
     int age;
 public:
@@ -82,3 +82,9 @@ ArrayCursor SparseArray::operator[](Index i)
     return ArrayCursor(*this, i);
 }
 
+int main()
+{ 
+    ArrayCursor arr();
+
+    return 1;
+}
